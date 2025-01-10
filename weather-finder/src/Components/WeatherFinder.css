@@ -27,6 +27,7 @@
     top: 60%;
     left: 50%;
     transform:translate(-50%,-50%);
+    z-index: 1;
 
     
 }
@@ -56,6 +57,7 @@
 
 .search-bar{
     position: relative;
+    z-index: 2;
 }
 
 .search-bar input{
@@ -87,6 +89,8 @@
     right: 2rem;
     color: #2c1a09;
     cursor: pointer;
+    z-index: 2;
+
 
 }
 

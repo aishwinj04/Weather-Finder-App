@@ -2,8 +2,20 @@ import sunny from "../assets/images/sunny.png"
 import cloudy from "../assets/images/cloudy.png"
 import rainy from "../assets/images/rainy.png"
 import snowy from "../assets/images/snowy.png"
+import { useState } from "react"
 
 const WeatherFinder = () => {
+    // holds api response
+  const [data, setData] = useState({})
+  const apiKey = import.meta.env.VITE_API_KEY
+  const search = async () => {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=Toronto&appid=${apiKey}`
+    const res = await fetch(url)
+    
+    const searchData = await res.json()
+    console.log(searchData)
+
+  }
   return (
     <div className="container">
       <div className="weather-app">
@@ -14,7 +26,7 @@ const WeatherFinder = () => {
           </div>
           <div className="search-bar">
             <input type="text" placeholder="Enter Location"/>
-            <i className="fa-solid fa-magnifying-glass"></i>
+            <i className="fa-solid fa-magnifying-glass" onClick={search}></i>
           </div>
         </div>
         <div className="weather">
