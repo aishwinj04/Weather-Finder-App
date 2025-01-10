@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Lilita+One&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lilita One", sans-serif;
+}
+
+html{
+    font-size: 62.5%; /* 1 rem to 10px */
+
+}

@@ -20,7 +20,7 @@ const WeatherFinder = () => {
           </div>
         </div>
         <div className="weather">
-          <img src={snowy} alt="sunny"/>
+          <img src={sunny} alt="sunny"/>
           <div className="weather-type">Clear</div>
           <div className="temp">28ºC</div>
         </div>
