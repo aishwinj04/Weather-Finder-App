@@ -3,8 +3,6 @@ import cloudy from "../assets/images/cloudy.png"
 import rainy from "../assets/images/rainy.png"
 import snowy from "../assets/images/snowy.png"
 
-
-
 const WeatherFinder = () => {
   return (
     <div className="container">
@@ -25,7 +23,7 @@ const WeatherFinder = () => {
           <div className="temp">28ºC</div>
         </div>
         <div className="weather-date">
-          <p>Thum 9 Jan</p>
+          <p>Fri, 10 Jan</p>
         </div>
         <div className="weather-data">
           <div className="humidity">

@@ -8,10 +8,6 @@
 
 }
 
-.weather img{
-    display: none;
-}
-
 .weather-app{
     width: 35rem;
     height: 60rem;
@@ -22,6 +18,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative; /* for weather type/temp/date/data */
+}
+
+.weather img{
+    position: absolute;
+    width: 110rem;
+    top: 60%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+
+    
 }
 
 .search{
@@ -43,7 +50,7 @@
 
 .search-top div{
     font-size: 2rem;
-    color: #362a1f;
+    color: #2c1a09;
     letter-spacing: 0.1rem;
 }
 
@@ -55,12 +62,12 @@
     width: 25rem;
     height: 5rem;
     background-color: transparent;
-    border: 0.2rem solid #362a1f;
+    border: 0.2rem solid #2c1a09;
     border-radius: 3rem;
     padding: 1rem 3rem 1rem 1rem;
     outline: none;
     font-size: 1.6rem;
-    color: #362a1f;
+    color: #2c1a09;
 }
 
 .search-bar input::placeholder{
@@ -78,7 +85,69 @@
     top: 50%; /* top edge */ 
     transform:translateY(-50%); /* center of the search bar */
     right: 2rem;
-    color: #362a1f;
+    color: #2c1a09;
     cursor: pointer;
 
+}
+
+.weather-type{
+    position:absolute;
+    top: 48%;
+    left: 50%;
+    transform:translateX(-50%);
+    font-size: 2rem;
+    color: #2c1a09;
+}
+
+.temp{
+     position: absolute;
+     top: 55%;
+     left: 50%;
+     transform:translateX(-50%);
+     font-size: 9rem;
+     background-image: linear-gradient(to right, #956c45, #2c1a09);
+     -webkit-background-clip: text; /* for gradient on text*/
+     -webkit-text-fill-color: transparent;
+     text-shadow: 0.5rem 0.5rem 1rem rgba(0,0,0,0.15);
+    
+}
+
+.weather-date{
+    position: absolute;
+    font-size: 1.5rem;
+    bottom: 22%;
+    color: 2c1a09;
+}
+
+.weather-data{
+    position: absolute;
+    width: 100%;
+    bottom: 2rem;
+    display: flex;
+    column-gap: 2rem;
+    padding: 0 2rem;
+}
+
+.weather-data > div{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    align-items: center;
+    flex: 1; /* grow proportional to wind and humidity boxes */
+    background-color: rgba(255, 255, 255, 0.17);
+    padding: 2rem;
+    border-radius: 2rem;
+
+}
+
+.data-name{
+    font-size: 1.8rem;
+    color: #2c1a09;
+}
+
+.weather-data i{
+    font-size: 2rem;
+    color: rgb(21, 48, 255);
+    text-shadow: -0.3rem 0.5rem 0.3rem rgba(0,0,0,0.4);
+    
 }
