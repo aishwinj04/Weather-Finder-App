@@ -40,9 +40,10 @@ const WeatherFinder = () => {
           </div>
         </div>
         <div className="weather">
-          <img src={sunny} alt="sunny"/>
-          <div className="weather-type">Clear</div>
+          <img src={snowy} alt="sunny"/>
+          <div className="weather-type">{data.weather ? `${(data.weather[0].main)}` : null}</div>
           <div className="temp">{data.main ? `${Math.floor(data.main.temp)}ºC` : null}</div>
+          <div className="feels-like">{data.weather ? `Feels Like: ${(data.main.feels_like)}ºC` : null}</div>
         </div>
         <div className="weather-date">
           <p>Fri, 10 Jan</p>
@@ -51,12 +52,12 @@ const WeatherFinder = () => {
           <div className="humidity">
             <div className="data-name">Humidity</div>
             <i className="fa-solid fa-droplet"></i>
-            <div className="data">35%</div>
+            <div className="data">{data.main ? `${(data.main.humidity)}%` : null}</div>
           </div>
           <div className="wind">
             <div className="data-name">Wind</div>
             <i className="fa-solid fa-wind"></i>
-            <div className="data">3 km/h</div>
+            <div className="data">{data.wind ? `${(data.wind.speed)}km/h` : null}</div>
           </div>
         </div>
       </div>
