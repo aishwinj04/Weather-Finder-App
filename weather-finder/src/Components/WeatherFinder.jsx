@@ -7,13 +7,14 @@ import { useState } from "react"
 const WeatherFinder = () => {
     // holds api response
   const [data, setData] = useState({})
-  const apiKey = import.meta.env.VITE_API_KEY
+  const apiKey = import.meta.env.VITE_API_KEY // stored in environment variable
   const search = async () => {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=Toronto&appid=${apiKey}`
     const res = await fetch(url)
-    
     const searchData = await res.json()
     console.log(searchData)
+
+    setData(searchData)
 
   }
   return (
