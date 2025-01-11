@@ -32,7 +32,7 @@ const WeatherFinder = () => {
         <div className="search">
           <div className="search-top">
             <i className="fa-solid fa-location-dot"></i>
-            <div className="location">{location}</div>
+            <div className="location">{data.name}</div>
           </div>
           <div className="search-bar">
             <input type="text" placeholder="Enter Location" onChange={handleInputChange}/>
@@ -42,7 +42,7 @@ const WeatherFinder = () => {
         <div className="weather">
           <img src={sunny} alt="sunny"/>
           <div className="weather-type">Clear</div>
-          <div className="temp">28ºC</div>
+          <div className="temp">{data.main ? `${Math.floor(data.main.temp)}ºC` : null}</div>
         </div>
         <div className="weather-date">
           <p>Fri, 10 Jan</p>
