@@ -2,14 +2,27 @@ import sunny from "../assets/images/sunny.png"
 import cloudy from "../assets/images/cloudy.png"
 import rainy from "../assets/images/rainy.png"
 import snowy from "../assets/images/snowy.png"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const WeatherFinder = () => {
    // holds api response
   const [data, setData] = useState({})
   const [location, setLocation] = useState("")
   const apiKey = import.meta.env.VITE_API_KEY // stored in environment variable
+  
+  // default weather when mounted
+    useEffect(() => {
+    const fetchDeafultWeather = async () => {
+      const defaultLocation = "Toronto"
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${defaultLocation}&units=metric&appid=${apiKey}`
+      const res = await fetch(url)
+      const defaultData = await res.json()
+      setData(defaultData)
+    }
 
+    fetchDeafultWeather()
+
+  },[])
   
   const handleInputChange = (e) => {
     setLocation(e.target.value)
@@ -28,10 +41,6 @@ const WeatherFinder = () => {
     }
 
   }   
-
-
-
-
   return (
     <div className="container">
       <div className="weather-app">
@@ -46,7 +55,7 @@ const WeatherFinder = () => {
           </div>
         </div>
         <div className="weather">
-          <img src={sunny} alt="sunny"/>
+          <img src={snowy} alt="sunny"/>
           <div className="weather-type">{data.weather ? `${(data.weather[0].main)}` : null}</div>
           <div className="temp">{data.main ? `${Math.floor(data.main.temp)}ºC` : null}</div>
           <div className="feels-like">{data.weather ? `Feels Like: ${(data.main.feels_like)}ºC` : null}</div>
