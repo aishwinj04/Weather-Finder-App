@@ -2,6 +2,7 @@ import sunny from "../assets/images/sunny.png"
 import cloudy from "../assets/images/cloudy.png"
 import rainy from "../assets/images/rainy.png"
 import snowy from "../assets/images/snowy.png"
+import thunder from "../assets/images/thunder.png"
 import { useState, useEffect } from "react"
 
 const WeatherFinder = () => {
@@ -40,7 +41,27 @@ const WeatherFinder = () => {
       setLocation("")
     }
 
-  }   
+  }
+
+  // map images to **common** OpenWeatherAPI weather types
+  const weatherImages = {
+    Clear: sunny,
+    Clouds: cloudy,
+    Rain: rainy,
+    Drizzle: rainy,
+    Thunderstorm: thunder,
+    Snow: snowy,
+    Haze: cloudy,
+    Mist: cloudy,
+    Smoke: cloudy
+  }
+
+  // check existence prior to assigning image
+  const weatherImage = data.weather ? weatherImages[data.weather[0].main] : null 
+  
+  
+
+
   return (
     <div className="container">
       <div className="weather-app">
@@ -55,7 +76,7 @@ const WeatherFinder = () => {
           </div>
         </div>
         <div className="weather">
-          <img src={snowy} alt="sunny"/>
+          <img src={weatherImage} alt="weather"/>
           <div className="weather-type">{data.weather ? `${(data.weather[0].main)}` : null}</div>
           <div className="temp">{data.main ? `${Math.floor(data.main.temp)}ºC` : null}</div>
           <div className="feels-like">{data.weather ? `Feels Like: ${(data.main.feels_like)}ºC` : null}</div>
