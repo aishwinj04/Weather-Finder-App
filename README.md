@@ -9,6 +9,7 @@
 - **Smooth user experience**: Easily search for weather updates with a clean and simple interface.
 - **Error handling**: Informative feedback when a location is not found.
 - **Loading animation**: Visual feedback while fetching data.
+- **Weather display**: Weather conditions are represented using Apple emojis that I have personally organized and placed, creating a visually engaging and unique experience.
 
 ## Usage
 
