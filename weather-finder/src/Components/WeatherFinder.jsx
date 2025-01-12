@@ -27,7 +27,9 @@ const WeatherFinder = () => {
   
   const handleInputChange = (e) => {
     setLocation(e.target.value)
-  }    
+  }
+
+  
 
     // GET request
   const search = async () => {
@@ -42,6 +44,13 @@ const WeatherFinder = () => {
     }
 
   }
+
+  // search by click and **enter key** options
+  const handleEnterKey = (e) => {
+    if(e.key === "Enter"){
+      search()
+    }
+  }  
 
   // map images to **common** OpenWeatherAPI weather types
   const weatherImages = {
@@ -76,9 +85,24 @@ const WeatherFinder = () => {
   }
 
   // unsuccessful fetch, set background to given color (string guarantee )
-  const backgroundImage = data.weather ? backgroundImages[data.weather[0].main] : 'linear-gradient(to right, #FDC830, #F37335)'
+  const backgroundImage = data.weather ? backgroundImages[data.weather[0].main] : 'linear-gradient(to right, #bdc3c7, #2c3e50)'
   console.log(data)
 
+  // dynamic date handling 
+  const currentDate = new Date()
+  console.log(currentDate)
+
+  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  const dayOfWeek = daysOfWeek[currentDate.getDay()]
+  const month = months[currentDate.getMonth()]
+  const day = currentDate.getDate()
+
+  console.log(day)
+  console.log(currentDate.getDay())
+
+  const dateFormat = `${dayOfWeek}, ${day} ${month}`
+  console.log(date)
   
 
 
@@ -86,35 +110,46 @@ const WeatherFinder = () => {
     <div className="container" style={{backgroundImage}}>
       <div className="weather-app" style={{backgroundImage: backgroundImage.replace("to right", "to top")}}> 
         <div className="search">
+
           <div className="search-top">
             <i className="fa-solid fa-location-dot"></i>
             <div className="location">{data.name}</div>
           </div>
+
           <div className="search-bar">
-            <input type="text" placeholder="Enter Location" onChange={handleInputChange}/>
+            <input type="text" placeholder="Enter Location" onChange={handleInputChange} onKeyDown={handleEnterKey}/>
             <i className="fa-solid fa-magnifying-glass" onClick={search}></i>
           </div>
         </div>
+
         <div className="weather">
           <img src={weatherImage} alt="weather"/>
           <div className="weather-type">{data.weather ? `${(data.weather[0].main)}` : null}</div>
           <div className="temp">{data.main ? `${Math.floor(data.main.temp)}ºC` : null}</div>
           <div className="feels-like">{data.weather ? `Feels Like: ${(data.main.feels_like)}ºC` : null}</div>
         </div>
+
         <div className="weather-date">
-          <p>Fri, 10 Jan</p>
+          <p>{dateFormat}</p>
         </div>
+
         <div className="weather-data">
+
           <div className="humidity">
             <div className="data-name">Humidity</div>
             <i className="fa-solid fa-droplet"></i>
             <div className="data">{data.main ? `${(data.main.humidity)}%` : null}</div>
           </div>
+
           <div className="wind">
             <div className="data-name">Wind</div>
             <i className="fa-solid fa-wind"></i>
             <div className="data">{data.wind ? `${(data.wind.speed)}km/h` : null}</div>
           </div>
+        </div>
+
+        <div className="footer">
+        <a href="https://github.com/aishwinj04/Weather-Finder-App" target="_blank">@aishwinj04</a>
         </div>
       </div>
     </div>
