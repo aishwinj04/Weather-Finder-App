@@ -3,22 +3,26 @@ import cloudy from "../assets/images/cloudy.png"
 import rainy from "../assets/images/rainy.png"
 import snowy from "../assets/images/snowy.png"
 import thunder from "../assets/images/thunder.png"
+import loadingGif from "../assets/images/loading.gif"
 import { useState, useEffect } from "react"
 
 const WeatherFinder = () => {
    // holds api response
   const [data, setData] = useState({})
   const [location, setLocation] = useState("")
+  const [loading, setLoading] = useState(false) 
   const apiKey = import.meta.env.VITE_API_KEY // stored in environment variable
   
   // default weather when mounted
     useEffect(() => {
     const fetchDeafultWeather = async () => {
+      setLoading(true) // processing api fetch
       const defaultLocation = "Toronto"
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${defaultLocation}&units=metric&appid=${apiKey}`
       const res = await fetch(url)
       const defaultData = await res.json()
       setData(defaultData)
+      setLoading(false)
     }
 
     fetchDeafultWeather()
@@ -29,11 +33,13 @@ const WeatherFinder = () => {
     setLocation(e.target.value)
   }
 
-  
 
     // GET request
   const search = async () => {
     if(location.trim() !== ""){
+
+      // setLoading(true) not necessary
+
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${apiKey}`
       const res = await fetch(url)
       const searchData = await res.json()
@@ -47,6 +53,7 @@ const WeatherFinder = () => {
         setData(searchData)
         setLocation("")
       }
+      setLoading(false) // data updated, loading set to false
     }
 
   }
@@ -128,7 +135,7 @@ const WeatherFinder = () => {
           </div>
         </div>
 
-        {data.notFound ? (<div className="not-found">Not Found</div>) : (
+        {loading ? (<img className="loader" src={loadingGif} alt="loading"/>) : data.notFound ? (<div className="not-found">Not Found</div>) : (
           <>
             <div className="weather">
               <img src={weatherImage} alt="weather"/>
