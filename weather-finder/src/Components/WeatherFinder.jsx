@@ -39,8 +39,14 @@ const WeatherFinder = () => {
       const searchData = await res.json()
       console.log(searchData)
 
-      setData(searchData)
-      setLocation("")
+      // cod 200 for successful input
+      if(searchData.cod !== 200){
+        setData({notFound: true})
+
+      }else{
+        setData(searchData)
+        setLocation("")
+      }
     }
 
   }
@@ -102,7 +108,7 @@ const WeatherFinder = () => {
   console.log(currentDate.getDay())
 
   const dateFormat = `${dayOfWeek}, ${day} ${month}`
-  console.log(date)
+  console.log(dateFormat)
   
 
 
@@ -122,31 +128,35 @@ const WeatherFinder = () => {
           </div>
         </div>
 
-        <div className="weather">
-          <img src={weatherImage} alt="weather"/>
-          <div className="weather-type">{data.weather ? `${(data.weather[0].main)}` : null}</div>
-          <div className="temp">{data.main ? `${Math.floor(data.main.temp)}ºC` : null}</div>
-          <div className="feels-like">{data.weather ? `Feels Like: ${(data.main.feels_like)}ºC` : null}</div>
-        </div>
+        {data.notFound ? (<div className="not-found">Not Found</div>) : (
+          <>
+            <div className="weather">
+              <img src={weatherImage} alt="weather"/>
+              <div className="weather-type">{data.weather ? `${(data.weather[0].main)}` : null}</div>
+              <div className="temp">{data.main ? `${Math.floor(data.main.temp)}ºC` : null}</div>
+              <div className="feels-like">{data.weather ? `Feels Like: ${(data.main.feels_like)}ºC` : null}</div>
+            </div>
 
-        <div className="weather-date">
-          <p>{dateFormat}</p>
-        </div>
+            <div className="weather-date">
+              <p>{dateFormat}</p>
+            </div>
 
-        <div className="weather-data">
+            <div className="weather-data">
 
-          <div className="humidity">
-            <div className="data-name">Humidity</div>
-            <i className="fa-solid fa-droplet"></i>
-            <div className="data">{data.main ? `${(data.main.humidity)}%` : null}</div>
-          </div>
+              <div className="humidity">
+                <div className="data-name">Humidity</div>
+                <i className="fa-solid fa-droplet"></i>
+                <div className="data">{data.main ? `${(data.main.humidity)}%` : null}</div>
+              </div>
 
-          <div className="wind">
-            <div className="data-name">Wind</div>
-            <i className="fa-solid fa-wind"></i>
-            <div className="data">{data.wind ? `${(data.wind.speed)}km/h` : null}</div>
-          </div>
-        </div>
+              <div className="wind">
+                <div className="data-name">Wind</div>
+                <i className="fa-solid fa-wind"></i>
+                <div className="data">{data.wind ? `${(data.wind.speed)}km/h` : null}</div>
+              </div>
+            </div>
+        </>
+        )}
 
         <div className="footer">
         <a href="https://github.com/aishwinj04/Weather-Finder-App" target="_blank">@aishwinj04</a>
