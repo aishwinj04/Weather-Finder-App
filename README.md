@@ -11,6 +11,11 @@
 - **Loading animation**: Visual feedback while fetching data.
 - **Weather display**: Weather conditions are represented using Apple emojis that I have personally organized and placed, creating a visually engaging and unique experience.
 
+## Live Site
+The Weather Finder App is hosted on Netlify. You can view the live app at the following URL:
+
+https://weather-finder-aishwinj.netlify.app/
+
 ## Usage
 
 - **Default Weather**: The app initially displays the weather for Toronto.
