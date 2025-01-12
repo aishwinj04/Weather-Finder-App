@@ -59,12 +59,32 @@ const WeatherFinder = () => {
   // check existence prior to assigning image
   const weatherImage = data.weather ? weatherImages[data.weather[0].main] : null 
   
+  // map different backgrounds 
+  const backgroundImages = {
+    Clear: 'linear-gradient(to right, #2980B9, #6DD5FA, #FFFFFF)',
+    Clouds: 'linear-gradient(to right, #bdc3c7, #2c3e50)',
+    Rain: 'linear-gradient(to right, #00416A, #E4E5E6)',
+    Drizzle: 'linear-gradient(to right, #4b79a1, #1CB5E0)',
+    Thunderstorm: 'linear-gradient(to right, #4b79a1, #283e51)',
+    Snow: 'linear-gradient(to right, #9CECFB, #004e92)',
+    Haze: 'linear-gradient(to right, #e6dada, #274046)',
+    Mist: 'linear-gradient(to right, #e6dada, #274046)',
+    Smoke:'linear-gradient(to right, #e6dada, #274046)'
+    
+    
+
+  }
+
+  // unsuccessful fetch, set background to given color (string guarantee )
+  const backgroundImage = data.weather ? backgroundImages[data.weather[0].main] : 'linear-gradient(to right, #FDC830, #F37335)'
+  console.log(data)
+
   
 
 
   return (
-    <div className="container">
-      <div className="weather-app">
+    <div className="container" style={{backgroundImage}}>
+      <div className="weather-app" style={{backgroundImage: backgroundImage.replace("to right", "to top")}}> 
         <div className="search">
           <div className="search-top">
             <i className="fa-solid fa-location-dot"></i>

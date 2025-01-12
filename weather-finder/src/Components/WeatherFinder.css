@@ -110,7 +110,7 @@
      left: 50%;
      transform:translate(-50%, -50%);
      font-size: 9rem;
-     background-image: linear-gradient(to right, #956c45, #2c1a09);
+     background-image: linear-gradient(to right, #3d2b1a, #2c1a09);
      -webkit-background-clip: text; /* for gradient on text*/
      -webkit-text-fill-color: transparent;
      text-shadow: 0.5rem 0.5rem 1rem rgba(0,0,0,0.15);
