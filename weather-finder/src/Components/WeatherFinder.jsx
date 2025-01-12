@@ -121,7 +121,7 @@ const WeatherFinder = () => {
 
   return (
     <div className="container" style={{backgroundImage}}>
-      <div className="weather-app" style={{backgroundImage: backgroundImage.replace("to right", "to top")}}> 
+      <div className="weather-app" style={{backgroundImage: backgroundImage && backgroundImage.replace ? backgroundImage.replace("to right", "to top") : null}}> 
         <div className="search">
 
           <div className="search-top">
