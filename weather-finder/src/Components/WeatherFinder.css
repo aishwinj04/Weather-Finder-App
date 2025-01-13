@@ -11,7 +11,6 @@
 
 .weather-app{
     width: 35rem;
-    height: 60rem;
     background-image: linear-gradient(to top, #005AA7, #FFFDE4);
     box-shadow: -0.5rem 2rem 2rem rgb(0, 0,0, 0.5);
     border-radius: 3rem;
@@ -20,6 +19,7 @@
     flex-direction: column;
     align-items: center;
     position: relative; /* parent */
+    aspect-ratio: 1/2;
 }
 
 .weather img{
@@ -191,4 +191,10 @@
     color: rgba(255, 255, 255, 0.3);
     cursor: pointer;
     z-index: 3;
+}
+
+@media (max-width: 550px){
+    .weather-app{
+        width: 75vmin;
+    }
 }
