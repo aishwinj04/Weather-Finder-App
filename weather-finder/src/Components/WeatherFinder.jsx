@@ -75,7 +75,8 @@ const WeatherFinder = () => {
     Snow: snowy,
     Haze: cloudy,
     Mist: cloudy,
-    Smoke: cloudy
+    Smoke: cloudy,
+    Fog: cloudy
   }
 
   // check existence prior to assigning image
@@ -91,14 +92,14 @@ const WeatherFinder = () => {
     Snow: 'linear-gradient(to right, #9CECFB, #004e92)',
     Haze: 'linear-gradient(to right, #e6dada, #274046)',
     Mist: 'linear-gradient(to right, #e6dada, #274046)',
-    Smoke:'linear-gradient(to right, #e6dada, #274046)'
+    Smoke:'linear-gradient(to right, #e6dada, #274046)',
+    Fog: 'linear-gradient(to right, #e6dada, #274046)'
     
-    
-
+  
   }
 
   // unsuccessful fetch, set background to given color (string guarantee )
-  const backgroundImage = data.weather ? backgroundImages[data.weather[0].main] : 'linear-gradient(to right, #bdc3c7, #2c3e50)'
+  const backgroundImage =  data.weather ? backgroundImages[data.weather[0].main] : 'linear-gradient(to right, #bdc3c7, #2c3e50)'
   console.log(data)
 
   // dynamic date handling 
