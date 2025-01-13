@@ -1,5 +1,7 @@
 # Weather Finder
 
+![Mockup](weather-finder/Mockup.png)
+
 **Weather Finder** is a user-friendly web application designed to provide real-time weather updates for any location worldwide. Built with React, this app fetches weather data from the OpenWeather API, allowing users to view the current temperature, weather conditions, and "feels-like" temperature. The app offers a straightforward interface for quick searches and ensures an easy, informative experience. Wh
 
 ## Features
