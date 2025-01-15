@@ -24,5 +24,5 @@ https://weather-finder-aishwinj.netlify.app/
 - **Location Search**: Users can search for any city to view real-time weather updates.
 - **Error Handling**: If a location cannot be found, a message is displayed to the user.
 
-# OpenWeather API
+## OpenWeather API
 https://openweathermap.org/current#name
