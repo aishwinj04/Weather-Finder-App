@@ -29,6 +29,7 @@ const WeatherFinder = () => {
 
   },[])
   
+  // update location given user input
   const handleInputChange = (e) => {
     setLocation(e.target.value)
   }
