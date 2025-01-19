@@ -1,4 +1,4 @@
-# Weather Finder 🌤️
+# Weather Finder Web App 🌤️
 
 ![Mockup](weather-finder/Mockup.png)
 
