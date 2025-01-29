@@ -13,7 +13,7 @@
 - **Loading animation**: Visual feedback while fetching data.
 - **Weather display**: Weather conditions are represented using Apple emojis, personally customized, to create a visually appealing and unique experience.
 
-## Live Site
+## [Demo](https://weather-finder-aishwinj.netlify.app/)
 The Weather Finder App is hosted on Netlify. You can view the live app at the following URL:
 
 https://weather-finder-aishwinj.netlify.app/
