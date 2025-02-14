@@ -3,7 +3,7 @@ import cloudy from "../assets/images/cloudy.png"
 import rainy from "../assets/images/rainy.png"
 import snowy from "../assets/images/snowy.png"
 import thunder from "../assets/images/thunder.png"
-import loadingGif from "../assets/images/loading.gif"
+import loader from "../assets/images/loader.gif"
 import { useState, useEffect } from "react"
 
 const WeatherFinder = () => {
@@ -17,8 +17,10 @@ const WeatherFinder = () => {
     useEffect(() => {
     const fetchDeafultWeather = async () => {
       setLoading(true) // processing api fetch
-      const defaultLocation = "Toronto"
+      const defaultLocation = "Toronto,CA"
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${defaultLocation}&units=metric&appid=${apiKey}`
+    
+
       const res = await fetch(url)
       const defaultData = await res.json()
       setData(defaultData)
@@ -89,7 +91,7 @@ const WeatherFinder = () => {
     Rain: 'linear-gradient(to right, #00416A, #E4E5E6)',
     Drizzle: 'linear-gradient(to right, #bdc3c7, #2c3e50)',
     Thunderstorm: 'linear-gradient(to right, #4b79a1, #283e51)',
-    Snow: 'linear-gradient(to right, #373B44, #4286f4)',
+    Snow: 'linear-gradient(to bottom, #F0F2F0, #000C40)',
     Haze: 'linear-gradient(to right, #e6dada, #274046)',
     Mist: 'linear-gradient(to right, #e6dada, #274046)',
     Smoke:'linear-gradient(to right, #e6dada, #274046)',
@@ -99,7 +101,7 @@ const WeatherFinder = () => {
   }
 
   // unsuccessful fetch, set background to given color (string guarantee )
-  const backgroundImage =  data.weather ? backgroundImages[data.weather[0].main] : 'linear-gradient(to right, #bdc3c7, #2c3e50)'
+  const backgroundImage =  data.weather ? backgroundImages[data.weather[0].main] : 'linear-gradient(to bottom, #F0F2F0, #000C40)'
   console.log(data)
 
   // dynamic date handling 
@@ -127,7 +129,8 @@ const WeatherFinder = () => {
 
           <div className="search-top">
             <i className="fa-solid fa-location-dot"></i>
-            <div className="location">{data.name}</div>
+            <div className="location">{data.main && `${(data.name)},`}</div>
+            <div className="country">{data.main ? `${(data.sys.country)}` : null}</div>
           </div>
 
           <div className="search-bar">
@@ -136,13 +139,14 @@ const WeatherFinder = () => {
           </div>
         </div>
 
-        {loading ? (<img className="loader" src={loadingGif} alt="loading"/>) : data.notFound ? (<div className="not-found">Not Found</div>) : (
+
+
+        {loading ? (<img className="loader" src={loader} alt="loading"/>) : data.notFound ? (<div className="not-found">Not Found</div>) : (
           <>
             <div className="weather">
               <img src={weatherImage} alt="weather"/>
               <div className="weather-type">{data.weather ? `${(data.weather[0].main)}` : null}</div>
               <div className="temp">{data.main ? `${Math.floor(data.main.temp)}ºC` : null}</div>
-              <div className="feels-like">{data.weather ? `Feels Like: ${(data.main.feels_like)}ºC` : null}</div>
             </div>
 
             <div className="weather-date">
@@ -157,11 +161,23 @@ const WeatherFinder = () => {
                 <div className="data">{data.main ? `${(data.main.humidity)}%` : null}</div>
               </div>
 
+              <div className="feelslike">
+                <div className="data-name">Feels Like</div>
+                <i className="fa-solid fa-temperature-half"></i>
+                <div className="data">{data.main ? `${(data.main.feels_like)}` : null}</div>
+
+
+              </div>
+              
+
               <div className="wind">
                 <div className="data-name">Wind</div>
                 <i className="fa-solid fa-wind"></i>
                 <div className="data">{data.wind ? `${(data.wind.speed)}km/h` : null}</div>
               </div>
+
+              
+          
             </div>
         </>
         )}
@@ -170,8 +186,22 @@ const WeatherFinder = () => {
         <a href="https://github.com/aishwinj04/Weather-Finder-App" target="_blank">@aishwinj04</a>
         </div>
       </div>
+
+
+       <div className="weatherHours" style={{backgroundImage: backgroundImage && backgroundImage.replace ? backgroundImage.replace("to right", "to top") : null}}>
+
+
+
+      </div>
+
+
+
+
+
     </div>
   )
 }
+
+
 
 export default WeatherFinder
